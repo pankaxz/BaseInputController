@@ -6,7 +6,10 @@
 #include "Camera/CameraComponent.h"
 #include "GameFramework/SpringArmComponent.h"
 #include "InputTest/Scripts/BaseInputScript.h"
+#include "Engine/GameEngine.h"
 #include "Kismet/GameplayStatics.h"
+
+#define D(x) if(GEngine){GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Yellow, TEXT(x));}
 
 // Sets default values
 AInputTestPawn::AInputTestPawn()
@@ -14,7 +17,6 @@ AInputTestPawn::AInputTestPawn()
  	// Set this pawn to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
-	
 	//Components
 	SM_TestPawnBody = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("TestPawnBody"));
 	RootComponent = SM_TestPawnBody;
@@ -31,22 +33,33 @@ AInputTestPawn::AInputTestPawn()
 void AInputTestPawn::BeginPlay()
 {
 	Super::BeginPlay();
-	BaseInputScript = NewObject<UBaseInputScript>(this);
+	
 }
 
 void AInputTestPawn::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-	if(BaseInputScript)
-	{
-		BaseInputScript->HandleInput();
-	}
+	UE_LOG(LogTemp, Warning, TEXT("Horizontal Value : %f"), HorizontalAxisVal);
+	UE_LOG(LogTemp, Warning, TEXT("Vertical Value : %f"), VerticalAxisVal);
 }
 
 // Called to bind functionality to input
 void AInputTestPawn::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
+	PlayerInputComponent->BindAxis(TEXT("Horizontal"), this, &AInputTestPawn::Horizontal);
+	PlayerInputComponent->BindAxis(TEXT("Vertical"), this, &AInputTestPawn::Vertical);
 
 }
 
+void AInputTestPawn::Horizontal(float AxisValue)
+{
+	HorizontalAxisVal = AxisValue;
+	PedalInput = HorizontalAxisVal;
+}
+
+void AInputTestPawn::Vertical(float AxisValue)
+{
+	VerticalAxisVal = AxisValue;
+	ThrottleInput = VerticalAxisVal;
+}
