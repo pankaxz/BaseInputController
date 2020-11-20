@@ -14,7 +14,7 @@ class INPUTTEST_API UBaseInputScript : public UObject
 {
 	GENERATED_BODY()
 
-	protected:
+	public:
 	virtual void HandleInput();
 	
 };

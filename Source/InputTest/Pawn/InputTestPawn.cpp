@@ -39,7 +39,7 @@ void AInputTestPawn::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 	if(BaseInputScript)
 	{
-		BaseInputScript->HandleInput;
+		BaseInputScript->HandleInput();
 	}
 }
 
