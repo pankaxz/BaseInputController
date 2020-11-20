@@ -5,5 +5,5 @@
 
 void UBaseInputScript::HandleInput()
 {
-    UE_LOG(LogTemp, Warning, TEXT("Handle Input"));
+    UE_LOG(LogTemp, Warning, TEXT("Handle Input called"));
 }
