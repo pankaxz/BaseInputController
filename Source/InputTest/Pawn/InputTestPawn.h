@@ -39,11 +39,8 @@ class INPUTTEST_API AInputTestPawn : public APawn
 	float GetVerticalInput() ;
 	float GetThrottleInput();
 	float GetPedalInput();
-	float GetCollectiveValue();
+	float GetCollectiveInput();
 	FVector2D GetCyclicInput();
-	
-
-
 	
 protected:
 	// Called when the game starts or when spawned
@@ -52,32 +49,40 @@ protected:
 private:
 
 	//Setters
+
 	void SetHorizontalInput(float AxisValue);
 	void SetVerticalInput(float AxisValue);
-	void SetThrottleInput();
-	void SetPedalInput();
-	void SetCollectiveInput();
+	void SetThrottleInput(float AxisValue);
+	void SetPedalInput(float AxisValue);
+	void SetCollectiveInput(float AxisValue);
 	void SetCyclicInput();
 
-	
 	//Input Variables
+	//
+	//Horizontal Input - w s
 	UPROPERTY(VisibleAnywhere, Category = "InputTest")
 	float HorizontalInput = 0.0f;
 
+	//Vertical Input - a d
 	UPROPERTY(VisibleAnywhere, Category = "InputTest")
 	float VerticalInput = 0.0f;
 
+	//Throttle Input 9 0 
 	UPROPERTY(VisibleAnywhere, Category = "InputTest")
 	float ThrottleInput = 0.0f;
-
+	
+	//Pedal Input - right left
+	UPROPERTY(VisibleAnywhere, Category = "InputTest")
+	float PedalInput = 0.0f;
+	
+	//Collective Input - up down
 	UPROPERTY(VisibleAnywhere, Category = "InputTest")
 	float CollectiveInput = 0.0f;
 
+	// Cyclic input - X = Horizontal Input			
+	// Cyclic input - Y = Vertical Input			
 	UPROPERTY(VisibleAnywhere, Category = "InputTest")
 	FVector2D CyclicInput = FVector2D().ZeroVector;
-	
-	UPROPERTY(VisibleAnywhere, Category = "InputTest")
-	float PedalInput = 0.0f;
 	
 };
 

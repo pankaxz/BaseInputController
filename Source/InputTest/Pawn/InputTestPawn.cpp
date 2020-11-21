@@ -36,22 +36,20 @@ void AInputTestPawn::BeginPlay()
 	
 }
 
-
-
 void AInputTestPawn::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
 	//Calling set functions
 	SetCyclicInput();
-	SetThrottleInput();
-	SetPedalInput();
-	SetCollectiveInput();
 	
-	UE_LOG(LogTemp, Warning, TEXT("Horizontal Value : %f"), GetHorizontalInput());
-	UE_LOG(LogTemp, Warning, TEXT("Vertical Value : %f"), GetVerticalInput());
 	UE_LOG(LogTemp, Warning, TEXT("Cyclic X Value : %f"), CyclicInput.X);
 	UE_LOG(LogTemp, Warning, TEXT("Cyclic Y Value : %f"), CyclicInput.Y);
+	UE_LOG(LogTemp, Warning, TEXT("Throttle Value : %f"), GetThrottleInput());
+	UE_LOG(LogTemp, Warning, TEXT("Collective Value : %f"), GetCollectiveInput());
+	UE_LOG(LogTemp, Warning, TEXT("______________________________________________________"));
+	
+	//UE_LOG(LogTemp, Warning, TEXT("cyclic Value : %f"), GetCyclicInput());
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -61,6 +59,9 @@ void AInputTestPawn::SetupPlayerInputComponent(UInputComponent* PlayerInputCompo
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 	PlayerInputComponent->BindAxis(TEXT("Horizontal"), this, &AInputTestPawn::SetHorizontalInput);
 	PlayerInputComponent->BindAxis(TEXT("Vertical"), this, &AInputTestPawn::SetVerticalInput);
+	PlayerInputComponent->BindAxis(TEXT("Throttle"), this, &AInputTestPawn::SetThrottleInput);
+	PlayerInputComponent->BindAxis(TEXT("Collective"), this, &AInputTestPawn::SetCollectiveInput);
+	PlayerInputComponent->BindAxis(TEXT("Collective"), this, &AInputTestPawn::SetPedalInput);
 }
 
 //Setter Functions
@@ -75,19 +76,19 @@ void AInputTestPawn::SetVerticalInput(float AxisValue)
 	VerticalInput = AxisValue;
 }
 
-void AInputTestPawn::SetThrottleInput()
+void AInputTestPawn::SetThrottleInput(float AxisValue)
 {
-	
+	ThrottleInput = AxisValue;
 }
 
-void AInputTestPawn::SetPedalInput()
+void AInputTestPawn::SetPedalInput(float AxisValue)
 {
-	
+	PedalInput = AxisValue;
 }
 
-void AInputTestPawn::SetCollectiveInput()
+void AInputTestPawn::SetCollectiveInput(float AxisValue)
 {
-	
+	CollectiveInput = AxisValue;
 }
 
 void AInputTestPawn::SetCyclicInput()
@@ -118,7 +119,7 @@ float AInputTestPawn::GetPedalInput()
 	return PedalInput;
 }
 
-float AInputTestPawn::GetCollectiveValue()
+float AInputTestPawn::GetCollectiveInput()
 {
 	return CollectiveInput;
 }
