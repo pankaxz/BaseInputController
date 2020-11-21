@@ -25,46 +25,53 @@ class INPUTTEST_API AInputTestPawn : public APawn
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "InputTest", meta = (AllowPrivateAccess = "true"))
 	UCameraComponent* Camera;
 	
-
-
+	public:
 	
-public:
-	// Sets default values for this pawn's properties
 	AInputTestPawn();
 
-	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
-	// Called to bind functionality to input
+	//Input Functions
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+	
+	float GetHorizontalInput();
+	float GetVerticalInput() ;
+	float GetThrottleInput();
+	float GetPedalInput();
+	float GetCollectiveValue();
+	FVector2D GetCyclicInput();
+
+	void SetHorizontalInput(float AxisValue);
+	void SetVerticalInput(float AxisValue);
+	void SetThrottleInput();
+	void SetPedalInput();
+	void SetCollectiveInput();
+	void SetCyclicInput();
 
 	//Input Variables
 	
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "InputTest", meta = (AllowPrivateAccess = "true"))
-	float HorizontalAxisVal = 0.0f;
+	UPROPERTY(VisibleAnywhere, Category = "InputTest")
+	float HorizontalInput = 0.0f;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "InputTest", meta = (AllowPrivateAccess = "true"))
-	float VerticalAxisVal = 0.0f;
+	UPROPERTY(VisibleAnywhere, Category = "InputTest")
+	float VerticalInput = 0.0f;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "InputTest", meta = (AllowPrivateAccess = "true"))
+	UPROPERTY(VisibleAnywhere, Category = "InputTest")
 	float ThrottleInput = 0.0f;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "InputTest", meta = (AllowPrivateAccess = "true"))
+	UPROPERTY(VisibleAnywhere, Category = "InputTest")
 	float CollectiveInput = 0.0f;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "InputTest", meta = (AllowPrivateAccess = "true"))
-	float CyclicInput = 0.0f;
+	UPROPERTY(VisibleAnywhere, Category = "InputTest")
+	FVector2D CyclicInput = FVector2D().ZeroVector;
 	
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "InputTest", meta = (AllowPrivateAccess = "true"))
+	UPROPERTY(VisibleAnywhere, Category = "InputTest")
 	float PedalInput = 0.0f;
-	
-	//Input Functions
-	void Horizontal(float AxisValue);
-	void Vertical(float AxisValue);
-	
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
+private:
+	
 };
 

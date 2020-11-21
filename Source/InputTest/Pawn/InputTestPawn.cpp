@@ -36,30 +36,93 @@ void AInputTestPawn::BeginPlay()
 	
 }
 
+
+
 void AInputTestPawn::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-	UE_LOG(LogTemp, Warning, TEXT("Horizontal Value : %f"), HorizontalAxisVal);
-	UE_LOG(LogTemp, Warning, TEXT("Vertical Value : %f"), VerticalAxisVal);
+
+	//Calling set functions
+	SetCyclicInput();
+	SetThrottleInput();
+	SetPedalInput();
+	SetCollectiveInput();
+
+	
+	UE_LOG(LogTemp, Warning, TEXT("Horizontal Value : %f"), GetHorizontalInput());
+	UE_LOG(LogTemp, Warning, TEXT("Vertical Value : %f"), GetVerticalInput());
+	
+
 }
 
-// Called to bind functionality to input
+//////////////////////////////////////////////////////////////////////
+// INPUT
 void AInputTestPawn::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
-	PlayerInputComponent->BindAxis(TEXT("Horizontal"), this, &AInputTestPawn::Horizontal);
-	PlayerInputComponent->BindAxis(TEXT("Vertical"), this, &AInputTestPawn::Vertical);
+}
+
+//Setter Functions
+
+void AInputTestPawn::SetHorizontalInput(float AxisValue)
+{
+	HorizontalInput = AxisValue;
+}
+
+void AInputTestPawn::SetVerticalInput(float AxisValue)
+{
+	VerticalInput = AxisValue;
+}
+
+void AInputTestPawn::SetThrottleInput()
+{
 
 }
 
-void AInputTestPawn::Horizontal(float AxisValue)
+void AInputTestPawn::SetPedalInput()
 {
-	HorizontalAxisVal = AxisValue;
-	PedalInput = HorizontalAxisVal;
+
 }
 
-void AInputTestPawn::Vertical(float AxisValue)
+void AInputTestPawn::SetCollectiveInput()
 {
-	VerticalAxisVal = AxisValue;
-	ThrottleInput = VerticalAxisVal;
+}
+
+
+void AInputTestPawn::SetCyclicInput()
+{
+	CyclicInput.Y = VerticalInput;
+	CyclicInput.X = HorizontalInput;
+}
+
+//Getter Functions
+
+float AInputTestPawn::GetHorizontalInput()
+{
+	return HorizontalInput;
+}
+
+float AInputTestPawn::GetVerticalInput()
+{
+	return  VerticalInput;
+}
+
+float AInputTestPawn::GetThrottleInput()
+{
+	return ThrottleInput;
+}
+
+float AInputTestPawn::GetPedalInput()
+{
+	return PedalInput;
+}
+
+float AInputTestPawn::GetCollectiveValue()
+{
+	return CollectiveInput;
+}
+
+FVector2D AInputTestPawn::GetCyclicInput()
+{
+	return CyclicInput;
 }
