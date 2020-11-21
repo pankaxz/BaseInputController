@@ -47,12 +47,11 @@ void AInputTestPawn::Tick(float DeltaTime)
 	SetThrottleInput();
 	SetPedalInput();
 	SetCollectiveInput();
-
 	
 	UE_LOG(LogTemp, Warning, TEXT("Horizontal Value : %f"), GetHorizontalInput());
 	UE_LOG(LogTemp, Warning, TEXT("Vertical Value : %f"), GetVerticalInput());
-	
-
+	UE_LOG(LogTemp, Warning, TEXT("Cyclic X Value : %f"), CyclicInput.X);
+	UE_LOG(LogTemp, Warning, TEXT("Cyclic Y Value : %f"), CyclicInput.Y);
 }
 
 //////////////////////////////////////////////////////////////////////
@@ -60,6 +59,8 @@ void AInputTestPawn::Tick(float DeltaTime)
 void AInputTestPawn::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
+	PlayerInputComponent->BindAxis(TEXT("Horizontal"), this, &AInputTestPawn::SetHorizontalInput);
+	PlayerInputComponent->BindAxis(TEXT("Vertical"), this, &AInputTestPawn::SetVerticalInput);
 }
 
 //Setter Functions
@@ -76,18 +77,18 @@ void AInputTestPawn::SetVerticalInput(float AxisValue)
 
 void AInputTestPawn::SetThrottleInput()
 {
-
+	
 }
 
 void AInputTestPawn::SetPedalInput()
 {
-
+	
 }
 
 void AInputTestPawn::SetCollectiveInput()
 {
+	
 }
-
 
 void AInputTestPawn::SetCyclicInput()
 {

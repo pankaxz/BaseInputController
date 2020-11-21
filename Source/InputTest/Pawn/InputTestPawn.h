@@ -33,14 +33,25 @@ class INPUTTEST_API AInputTestPawn : public APawn
 
 	//Input Functions
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
-	
+
+	//Getters
 	float GetHorizontalInput();
 	float GetVerticalInput() ;
 	float GetThrottleInput();
 	float GetPedalInput();
 	float GetCollectiveValue();
 	FVector2D GetCyclicInput();
+	
 
+
+	
+protected:
+	// Called when the game starts or when spawned
+	virtual void BeginPlay() override;
+
+private:
+
+	//Setters
 	void SetHorizontalInput(float AxisValue);
 	void SetVerticalInput(float AxisValue);
 	void SetThrottleInput();
@@ -48,8 +59,8 @@ class INPUTTEST_API AInputTestPawn : public APawn
 	void SetCollectiveInput();
 	void SetCyclicInput();
 
-	//Input Variables
 	
+	//Input Variables
 	UPROPERTY(VisibleAnywhere, Category = "InputTest")
 	float HorizontalInput = 0.0f;
 
@@ -67,11 +78,6 @@ class INPUTTEST_API AInputTestPawn : public APawn
 	
 	UPROPERTY(VisibleAnywhere, Category = "InputTest")
 	float PedalInput = 0.0f;
-protected:
-	// Called when the game starts or when spawned
-	virtual void BeginPlay() override;
-
-private:
 	
 };
 
