@@ -57,11 +57,18 @@ void AInputTestPawn::Tick(float DeltaTime)
 void AInputTestPawn::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
+	//KEYBOARD
 	PlayerInputComponent->BindAxis(TEXT("Horizontal"), this, &AInputTestPawn::SetHorizontalInput);
 	PlayerInputComponent->BindAxis(TEXT("Vertical"), this, &AInputTestPawn::SetVerticalInput);
 	PlayerInputComponent->BindAxis(TEXT("Throttle"), this, &AInputTestPawn::SetThrottleInput);
 	PlayerInputComponent->BindAxis(TEXT("Collective"), this, &AInputTestPawn::SetCollectiveInput);
-	PlayerInputComponent->BindAxis(TEXT("Collective"), this, &AInputTestPawn::SetPedalInput);
+	PlayerInputComponent->BindAxis(TEXT("Pedal"), this, &AInputTestPawn::SetPedalInput);
+	//XBOX CONTROLLER
+	PlayerInputComponent->BindAxis(TEXT("XBOXCyclicVertical"), this, &AInputTestPawn::SetVerticalInput);
+	PlayerInputComponent->BindAxis(TEXT("XBOXCyclicHorizontal"), this, &AInputTestPawn::SetHorizontalInput);
+	PlayerInputComponent->BindAxis(TEXT("XBOXCollective"), this, &AInputTestPawn::SetCollectiveInput);
+	PlayerInputComponent->BindAxis(TEXT("XBOXPedal"), this, &AInputTestPawn::SetPedalInput);
+	PlayerInputComponent->BindAxis(TEXT("XBOXThrottle"), this, &AInputTestPawn::SetThrottleInput);
 }
 
 //Setter Functions
