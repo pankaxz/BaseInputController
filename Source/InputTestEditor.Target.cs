@@ -9,6 +9,6 @@ public class InputTestEditorTarget : TargetRules
 	{
 		Type = TargetType.Editor;
 		DefaultBuildSettings = BuildSettingsVersion.V2;
-		ExtraModuleNames.AddRange( new string[] { "InputTest", "InputTestEditor" } );
+		ExtraModuleNames.AddRange( new string[] { "InputTest"} );
 	}
 }
