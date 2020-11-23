@@ -53,6 +53,17 @@
           </e>
         </e>
         <e p="InputTest.Target.cs" t="Include" />
+        <e p="InputTestEditor" t="Include">
+          <e p="InputTestEditor.build.cs" t="Include" />
+          <e p="Private" t="Include">
+            <e p="CustomDetails.cpp" t="Include" />
+            <e p="CustomDetails.h" t="Include" />
+            <e p="InputTestEditor.cpp" t="Include" />
+          </e>
+          <e p="Public" t="Include">
+            <e p="InputTestEditor.h" t="Include" />
+          </e>
+        </e>
         <e p="InputTestEditor.Target.cs" t="Include" />
       </e>
       <e p="Visualizers" t="Include" />

@@ -43,7 +43,7 @@ class INPUTTEST_API AInputTestPawn : public APawn
 	FVector2D GetCyclicInput();
 	
 protected:
-	// Called when the game starts or when spawned
+	// Called when the game sutarts or when spawned
 	virtual void BeginPlay() override;
 
 private:

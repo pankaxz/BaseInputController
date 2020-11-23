@@ -12,6 +12,12 @@
 				"Engine",
 				"CoreUObject"
 			]
+		},
+		{
+			"Name": "InputTestEditor",
+			"Type": "Editor",
+			"LoadingPhase": "PostEngineInit",
+			"AdditionalDependencies": []
 		}
 	],
 	"Plugins": [
