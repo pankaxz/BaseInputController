@@ -9,8 +9,6 @@
 #include "Engine/GameEngine.h"
 #include "Kismet/GameplayStatics.h"
 
-#define D(x) if(GEngine){GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Yellow, TEXT(x));}
-
 // Sets default values
 AInputTestPawn::AInputTestPawn()
 {
@@ -33,7 +31,6 @@ AInputTestPawn::AInputTestPawn()
 void AInputTestPawn::BeginPlay()
 {
 	Super::BeginPlay();
-	
 }
 
 void AInputTestPawn::Tick(float DeltaTime)
@@ -41,8 +38,7 @@ void AInputTestPawn::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 
 	//Calling set functions
-	SetCyclicInput();
-	
+	//SetCyclicInput();
 	UE_LOG(LogTemp, Warning, TEXT("Cyclic X Value : %f"), CyclicInput.X);
 	UE_LOG(LogTemp, Warning, TEXT("Cyclic Y Value : %f"), CyclicInput.Y);
 	UE_LOG(LogTemp, Warning, TEXT("Throttle Value : %f"), GetThrottleInput());
@@ -63,12 +59,14 @@ void AInputTestPawn::SetupPlayerInputComponent(UInputComponent* PlayerInputCompo
 	PlayerInputComponent->BindAxis(TEXT("Throttle"), this, &AInputTestPawn::SetThrottleInput);
 	PlayerInputComponent->BindAxis(TEXT("Collective"), this, &AInputTestPawn::SetCollectiveInput);
 	PlayerInputComponent->BindAxis(TEXT("Pedal"), this, &AInputTestPawn::SetPedalInput);
+	
 	//XBOX CONTROLLER
-	PlayerInputComponent->BindAxis(TEXT("XBOXCyclicVertical"), this, &AInputTestPawn::SetVerticalInput);
-	PlayerInputComponent->BindAxis(TEXT("XBOXCyclicHorizontal"), this, &AInputTestPawn::SetHorizontalInput);
-	PlayerInputComponent->BindAxis(TEXT("XBOXCollective"), this, &AInputTestPawn::SetCollectiveInput);
-	PlayerInputComponent->BindAxis(TEXT("XBOXPedal"), this, &AInputTestPawn::SetPedalInput);
-	PlayerInputComponent->BindAxis(TEXT("XBOXThrottle"), this, &AInputTestPawn::SetThrottleInput);
+	//PlayerInputComponent->BindAxis(TEXT("XBOXCyclicVertical"), this, &AInputTestPawn::SetVerticalInput);
+	//PlayerInputComponent->BindAxis(TEXT("XBOXCyclicHorizontal"), this, &AInputTestPawn::SetHorizontalInput);
+	//PlayerInputComponent->BindAxis(TEXT("XBOXThrottle"), this, &AInputTestPawn::SetThrottleInput);
+	//PlayerInputComponent->BindAxis(TEXT("XBOXCollective"), this, &AInputTestPawn::SetCollectiveInput);
+	//PlayerInputComponent->BindAxis(TEXT("XBOXPedal"), this, &AInputTestPawn::SetPedalInput);
+	
 }
 
 //Setter Functions
@@ -76,11 +74,13 @@ void AInputTestPawn::SetupPlayerInputComponent(UInputComponent* PlayerInputCompo
 void AInputTestPawn::SetHorizontalInput(float AxisValue)
 {
 	HorizontalInput = AxisValue;
+	CyclicInput.X = HorizontalInput;
 }
 
 void AInputTestPawn::SetVerticalInput(float AxisValue)
 {
 	VerticalInput = AxisValue;
+	CyclicInput.Y = VerticalInput;
 }
 
 void AInputTestPawn::SetThrottleInput(float AxisValue)
@@ -103,6 +103,19 @@ void AInputTestPawn::SetCyclicInput()
 	CyclicInput.Y = VerticalInput;
 	CyclicInput.X = HorizontalInput;
 }
+
+void AInputTestPawn::SetInputType(EInputType Type)
+{
+	if(Type == EInputType::XBOX)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("XBOX"));
+	}
+	if(Type == EInputType::Keyboard)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Keyboard"));
+	}
+}
+
 
 //Getter Functions
 
@@ -135,3 +148,4 @@ FVector2D AInputTestPawn::GetCyclicInput()
 {
 	return CyclicInput;
 }
+

@@ -11,6 +11,13 @@ class USpringArmComponent;
 class UCameraComponent;
 
 
+UENUM(BlueprintType)
+enum class EInputType : uint8
+{
+	Keyboard,
+    XBOX
+};
+
 UCLASS()
 class INPUTTEST_API AInputTestPawn : public APawn
 {
@@ -25,12 +32,17 @@ class INPUTTEST_API AInputTestPawn : public APawn
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "InputTest", meta = (AllowPrivateAccess = "true"))
 	UCameraComponent* Camera;
 	
-	public:
+public:
 	
 	AInputTestPawn();
 
 	virtual void Tick(float DeltaTime) override;
+	//Variables
+	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "InputTest")
+	EInputType InputType;
 
+	
 	//Input Functions
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
@@ -47,7 +59,7 @@ protected:
 	virtual void BeginPlay() override;
 
 private:
-
+	
 	//Setters
 
 	void SetHorizontalInput(float AxisValue);
@@ -56,15 +68,13 @@ private:
 	void SetPedalInput(float AxisValue);
 	void SetCollectiveInput(float AxisValue);
 	void SetCyclicInput();
-
+	void SetInputType(EInputType);
 	//Input Variables
 	//
 	//Horizontal Input - w s
-	UPROPERTY(VisibleAnywhere, Category = "InputTest")
 	float HorizontalInput = 0.0f;
 
 	//Vertical Input - a d
-	UPROPERTY(VisibleAnywhere, Category = "InputTest")
 	float VerticalInput = 0.0f;
 
 	//Throttle Input 9 0 

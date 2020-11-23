@@ -5,6 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e52a7dc6-e9e5-4c87-8163-6c700f6e3f7f" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.InputTest/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.InputTest/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Config/DefaultInput.ini" beforeDir="false" afterPath="$PROJECT_DIR$/Config/DefaultInput.ini" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/InputTest/Maps/InputTestMap.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/InputTest/Maps/InputTestMap.umap" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/InputTest/Maps/InputTestMap_BuiltData.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/InputTest/Maps/InputTestMap_BuiltData.uasset" afterDir="false" />
@@ -205,7 +206,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1606161634629</updated>
-      <workItem from="1606161704111" duration="2747000" />
+      <workItem from="1606161704111" duration="6107000" />
     </task>
     <servers />
   </component>
